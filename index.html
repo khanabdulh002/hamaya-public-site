@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hamaya Studio OS — the governed AI-native creative operating system</title>
+<meta name="description" content="Hamaya Studio OS takes an idea to a story, shots, inspected image Takes, narration and a finished video — with every selection, approval and credit in the creator's hands.">
+<meta name="theme-color" content="#3E0B16">
+<link rel="canonical" href="https://hamayastudio.com/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hamayastudio.com/">
+<meta property="og:title" content="Hamaya Studio OS">
+<meta property="og:description" content="Other AI tools help you generate. Hamaya helps creators direct, inspect, choose, govern and finish.">
+<meta property="og:image" content="https://hamayastudio.com/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --maroon-950:#2A0710;
+  --maroon-900:#3E0B16;
+  --maroon-800:#55101F;
+  --maroon-700:#6E1A2B;
+  --gold-300:#EBCB86;
+  --gold-400:#D7AE5E;
+  --gold-500:#B8873A;
+  --gold-700:#8A5F34;
+  --porcelain:#FBF6EF;
+  --porcelain-2:#F4EADC;
+  --ink:#24141A;
+  --ink-muted:#6A5A58;
+  --line:rgba(138,95,52,.22);
+  --serif:'Playfair Display','Didot','Bodoni 72',Georgia,serif;
+  --sans:'Manrope','Avenir Next','Helvetica Neue',Arial,sans-serif;
+  --radius:18px;
+  --wrap:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-400);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-700)}
+.on-dark .eyebrow{color:var(--gold-300)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(32px,4.4vw,52px);color:var(--maroon-900)}
+h3{font-size:22px;color:var(--maroon-900)}
+.rule{width:56px;height:2px;background:linear-gradient(90deg,var(--gold-500),var(--gold-300));border:0;margin:22px 0}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:16px;text-decoration:none;border-radius:999px;padding:15px 26px;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-gold{background:linear-gradient(180deg,#E6C47C,#C2913F);color:var(--maroon-950);box-shadow:0 10px 30px -12px rgba(215,174,94,.7),inset 0 1px 0 rgba(255,255,255,.45)}
+.btn-ghost{border:1px solid rgba(235,203,134,.55);color:var(--porcelain)}
+.btn-ghost:hover{background:rgba(235,203,134,.1)}
+.btn-maroon{background:var(--maroon-800);color:var(--porcelain)}
+.btn-maroon:hover{background:var(--maroon-700)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* Header */
+.site-header{position:absolute;top:0;left:0;right:0;z-index:10}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:84px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--porcelain)}
+.brand svg{width:46px;height:auto}
+.brand-name{display:flex;flex-direction:column;line-height:1}
+.brand-name b{font-family:var(--sans);font-weight:700;letter-spacing:.14em;font-size:19px;background:linear-gradient(180deg,#F3D995,#C9973F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-name span{font-size:13px;color:var(--gold-300);margin-top:5px;letter-spacing:.04em}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{text-decoration:none;font-size:15px;color:rgba(251,246,239,.82)}
+.nav a:hover{color:var(--porcelain)}
+.nav .btn{padding:10px 20px;font-size:14px;color:var(--maroon-950)}
+@media (max-width:860px){.nav .nav-link{display:none}}
+@media (max-width:420px){.nav .login{display:none}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;color:var(--porcelain);
+  background:
+    radial-gradient(900px 520px at 78% 38%,rgba(215,174,94,.20),transparent 62%),
+    radial-gradient(700px 600px at 0% 100%,rgba(110,26,43,.9),transparent 70%),
+    linear-gradient(160deg,var(--maroon-800) 0%,var(--maroon-900) 48%,var(--maroon-950) 100%);
+  padding:150px 0 96px}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(235,203,134,.5),transparent)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(42px,6.2vw,80px);color:var(--porcelain);margin-top:20px}
+.hero h1 em{font-style:italic;background:linear-gradient(180deg,#F3D995,#C9973F);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em}
+.hero .lede{font-size:clamp(17px,1.6vw,20px);color:rgba(251,246,239,.84);max-width:560px;margin:26px 0 36px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.hero-claim{margin-top:44px;padding-top:24px;border-top:1px solid rgba(235,203,134,.25);font-family:var(--serif);font-size:20px;line-height:1.45;color:rgba(251,246,239,.9);max-width:560px}
+.hero-claim b{color:var(--gold-300);font-weight:600}
+
+.hero-visual{position:relative;height:560px}
+.frame{position:absolute;width:52%;aspect-ratio:9/16;border-radius:22px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.65),0 0 0 1px rgba(235,203,134,.35)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame.f1{left:0;top:56px;transform:rotate(-6deg);opacity:.9}
+.frame.f2{right:0;top:56px;transform:rotate(6deg);opacity:.9}
+.frame.f3{left:24%;top:0;z-index:2;box-shadow:0 50px 90px -30px rgba(0,0,0,.75),0 0 0 1.5px var(--gold-400)}
+.chip{position:absolute;left:12px;top:12px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 11px;border-radius:999px;background:rgba(42,7,16,.72);color:var(--gold-300);backdrop-filter:blur(6px);border:1px solid rgba(235,203,134,.4)}
+.hero-caption{position:absolute;left:0;right:0;bottom:-34px;text-align:center;font-size:13px;color:rgba(251,246,239,.62)}
+@media (max-width:960px){
+  .hero{padding:120px 0 72px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-visual{height:auto;aspect-ratio:1/1;max-width:440px;margin:0 auto;width:100%}
+}
+
+/* Sections */
+section{padding:112px 0}
+@media (max-width:720px){section{padding:76px 0}}
+.section-head{max-width:760px;margin-bottom:56px}
+.section-head p{color:var(--ink-muted);font-size:18px;margin:18px 0 0}
+
+/* Workflow */
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px 4px;margin:0 0 40px;padding:0;list-style:none}
+.flow li{display:flex;align-items:center}
+.flow li+li::before{content:"";width:26px;height:1px;background:var(--gold-500);margin:0 8px;opacity:.7}
+@media (max-width:720px){.flow{gap:8px}.flow li+li::before{display:none}}
+.flow button{font:inherit;font-weight:600;font-size:15px;border:1px solid var(--line);background:#fff;color:var(--maroon-900);border-radius:999px;padding:10px 18px;cursor:pointer;transition:all .15s ease}
+.flow button:hover{border-color:var(--gold-500)}
+.flow button[aria-selected="true"]{background:var(--maroon-900);border-color:var(--maroon-900);color:var(--gold-300)}
+.flow .n{font-family:var(--serif);font-style:italic;color:var(--gold-500);margin-right:8px}
+.flow button[aria-selected="true"] .n{color:var(--gold-300)}
+.steps{display:grid;gap:28px}
+.step{display:grid;grid-template-columns:.8fr 1.2fr;gap:44px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:40px;box-shadow:0 30px 60px -40px rgba(62,11,22,.35)}
+.step .num{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold-500)}
+.step h3{font-size:clamp(26px,2.6vw,34px);margin:10px 0 16px}
+.step p{color:var(--ink-muted);margin:0}
+.step .tag{display:inline-block;margin-top:22px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-700)}
+.shot{border-radius:16px;overflow:hidden;border:1px solid rgba(36,20,26,.08);box-shadow:0 30px 60px -36px rgba(36,20,26,.5);background:var(--porcelain-2)}
+.shot img{width:100%;height:auto}
+.js .steps .step[hidden]{display:none}
+@media (max-width:860px){.step{grid-template-columns:1fr;padding:24px;gap:24px}.step .copy{order:2}}
+
+/* Why */
+.why{background:linear-gradient(180deg,var(--porcelain) 0%,var(--porcelain-2) 100%)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:rgba(255,255,255,.75);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px}
+.card svg{width:34px;height:34px;color:var(--gold-500);margin-bottom:18px}
+.card h3{margin-bottom:10px}
+.card p{margin:0;color:var(--ink-muted);font-size:16px}
+@media (max-width:960px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.cards{grid-template-columns:1fr}}
+
+.feature{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:center;margin-top:96px}
+.feature p{color:var(--ink-muted);margin:0}
+.feature ul{margin:22px 0 0;padding:0;list-style:none}
+.feature li{position:relative;padding-left:26px;margin:10px 0;color:var(--ink)}
+.feature li::before{content:"";position:absolute;left:0;top:.62em;width:12px;height:2px;background:var(--gold-500)}
+@media (max-width:860px){.feature{grid-template-columns:1fr;gap:28px;margin-top:64px}}
+
+/* Made with */
+.made{background:var(--maroon-950);color:var(--porcelain)}
+.made h2{color:var(--porcelain)}
+.made .section-head p{color:rgba(251,246,239,.72)}
+.reel{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:0;padding:0;list-style:none}
+.reel li{margin:0}
+.reel figure{margin:0}
+.reel img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;box-shadow:0 0 0 1px rgba(235,203,134,.25)}
+.reel figcaption{font-size:13px;color:rgba(251,246,239,.7);margin-top:10px;line-height:1.35}
+.reel figcaption b{display:block;font-family:var(--serif);font-style:italic;font-weight:500;color:var(--gold-300);font-size:14px;margin-bottom:2px}
+@media (max-width:960px){.reel{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:480px){.reel{grid-template-columns:repeat(2,1fr)}}
+.made .note{margin-top:34px;font-size:14px;color:rgba(251,246,239,.6);max-width:760px}
+
+
+/* Next */
+.next{padding:96px 0}
+.next .box{border:1px dashed rgba(138,95,52,.45);border-radius:var(--radius);padding:30px 32px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;background:rgba(255,255,255,.5)}
+.next .box p{margin:6px 0 0;color:var(--ink-muted)}
+@media (max-width:620px){.next .box{grid-template-columns:1fr}}
+
+/* Closing */
+.closing{text-align:center;color:var(--porcelain);background:
+  radial-gradient(700px 400px at 50% 0%,rgba(215,174,94,.2),transparent 70%),
+  linear-gradient(180deg,var(--maroon-800),var(--maroon-950))}
+.closing h2{color:var(--porcelain);font-size:clamp(36px,5.4vw,64px)}
+.closing p{color:rgba(251,246,239,.8);font-size:19px;max-width:620px;margin:22px auto 38px}
+.closing .cta-row{justify-content:center}
+.closing .rule{margin:22px auto}
+
+footer{background:var(--maroon-950);color:rgba(251,246,239,.7);border-top:1px solid rgba(235,203,134,.18);padding:40px 0;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:22px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--porcelain)}
+footer .tagline{font-family:var(--serif);font-style:italic;color:var(--gold-300)}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.flow button{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="hamaya-gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6DE9C"/>
+      <stop offset=".55" stop-color="#D3A44F"/>
+      <stop offset="1" stop-color="#9C6B32"/>
+    </linearGradient>
+    <symbol id="hamaya-mark" viewBox="55 200 885 603">
+      <path d="M183 309L347 200L347 484L183 650Z"/>
+      <path d="M661 200L814 309L814 661L661 497Z"/>
+      <path d="M55 803L500 347L716 579C623 505 530 486 470 525C399 571 336 686 271 803Z"/>
+      <path d="M399 634C459 560 519 511 582 527C677 549 792 669 940 803L699 803C636 699 568 596 500 587C456 582 421 601 399 634Z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Hamaya Studio OS home">
+      <svg viewBox="55 200 885 603" fill="url(#hamaya-gold)" aria-hidden="true"><use href="#hamaya-mark"/></svg>
+      <span class="brand-name"><b>HAMAYA</b><span>Studio OS</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-link" href="#why">Why Hamaya</a>
+      <a class="login" href="https://staging.hamayastudio.com/login">Log in</a>
+      <a class="btn btn-gold" href="https://staging.hamayastudio.com">Start creating</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero on-dark" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Hamaya Studio OS · Governed creative operating system</p>
+        <h1 id="hero-title">Create with AI.<br><em>Decide</em> like a director.</h1>
+        <p class="lede">Hamaya Studio OS is a governed, AI-native creative operating system. Take an idea to a story, shots, inspected image Takes, narration and a finished video — with every selection, approval and credit in your hands.</p>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="https://staging.hamayastudio.com">Start creating
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <p class="hero-claim">Other AI tools help you generate.<br><b>Hamaya helps you direct, inspect, choose, govern — and finish.</b></p>
+      </div>
+      <div class="hero-visual">
+        <div class="frame f1"><img src="assets/img/made-01.jpg" alt="Doha skyline before dawn, reflected in still water" width="640" height="1138"></div>
+        <div class="frame f2"><img src="assets/img/made-06.jpg" alt="Aerial view of the Doha Corniche curving toward the horizon" width="640" height="1138"></div>
+        <div class="frame f3"><span class="chip">Selected Take</span><img src="assets/img/made-05.jpg" alt="A traditional wind tower in an old alley with the West Bay skyline beyond" width="640" height="1138" fetchpriority="high"></div>
+        <p class="hero-caption">Real IMAGE Takes from “The Next Horizon”, a vertical film made in Hamaya Studio OS.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How Hamaya works</p>
+        <h2 id="how-title">One governed path from idea to finished video.</h2>
+        <p>Every screen below is a real capture from Hamaya Studio OS.</p>
+      </div>
+
+      <ol class="flow" role="tablist" aria-label="Hamaya workflow" hidden>
+        <li><button role="tab" id="t-idea" aria-controls="s-idea"><span class="n">01</span>Idea</button></li>
+        <li><button role="tab" id="t-story" aria-controls="s-story"><span class="n">02</span>Story</button></li>
+        <li><button role="tab" id="t-shots" aria-controls="s-shots"><span class="n">03</span>Shots</button></li>
+        <li><button role="tab" id="t-inspection" aria-controls="s-inspection"><span class="n">04</span>Inspection</button></li>
+        <li><button role="tab" id="t-narration" aria-controls="s-narration"><span class="n">05</span>Narration</button></li>
+        <li><button role="tab" id="t-finished" aria-controls="s-finished"><span class="n">06</span>Finished Video</button></li>
+      </ol>
+
+      <div class="steps">
+        <article class="step" id="s-idea" role="tabpanel" aria-labelledby="t-idea">
+          <div class="copy">
+            <span class="num">01 · Idea</span>
+            <h3>Start in your own words.</h3>
+            <p>Describe what you want to make. Hamaya returns a Brief you can check — what it understood, what you set, and what it left for you to decide. Reading your idea is free: no AI is used and nothing is charged.</p>
+            <span class="tag">Idea → Brief</span>
+          </div>
+          <div class="shot"><img src="assets/img/step-brief.jpg" alt="Hamaya Brief screen listing what Hamaya understood from the creator's idea" width="1600" height="927" loading="lazy"></div>
+        </article>
+        <article class="step" id="s-story" role="tabpanel" aria-labelledby="t-story">
+          <div class="copy">
+            <span class="num">02 · Story</span>
+            <h3>See the film before anything is generated.</h3>
+            <p>Your story is laid out as a storyboard, shot by shot, so you can shape it first. Nothing is generated until you press a priced button.</p>
+            <span class="tag">Story → Storyboard</span>
+          </div>
+          <div class="shot"><img src="assets/img/step-story.jpg" alt="Storyboard of six shots with a selected Take for each" width="1600" height="927" loading="lazy"></div>
+        </article>
+        <article class="step" id="s-shots" role="tabpanel" aria-labelledby="t-shots">
+          <div class="copy">
+            <span class="num">03 · Shots</span>
+            <h3>Several Takes. One choice — yours.</h3>
+            <p>Each shot can hold several IMAGE Takes. Viewing a Take never selects it. A Take enters your film only when you press <strong>Use Take</strong>.</p>
+            <span class="tag">Shots → IMAGE Takes → Use Take</span>
+          </div>
+          <div class="shot"><img src="assets/img/step-shots.jpg" alt="Shot workspace viewing Take 1, with an explicit Use Take button" width="1600" height="927" loading="lazy"></div>
+        </article>
+        <article class="step" id="s-inspection" role="tabpanel" aria-labelledby="t-inspection">
+          <div class="copy">
+            <span class="num">04 · Inspection</span>
+            <h3>AI inspection that shows its evidence.</h3>
+            <p>Ask AI to inspect an image Take for composition, story requirements and artifacts. Each finding explains itself, the price is shown before you ask, and your selection is never changed for you.</p>
+            <span class="tag">AI IMAGE Inspection</span>
+          </div>
+          <div class="shot"><img src="assets/img/step-inspection.jpg" alt="AI inspection findings for a selected image Take: composition 8.5 of 10, no issue flagged" width="1600" height="927" loading="lazy"></div>
+        </article>
+        <article class="step" id="s-narration" role="tabpanel" aria-labelledby="t-narration">
+          <div class="copy">
+            <span class="num">05 · Narration</span>
+            <h3>Narration and voice, directed in place.</h3>
+            <p>Shape and approve the narration, then choose and approve the voice recording — inside the same workflow, not in another tool.</p>
+            <span class="tag">Narration → Voice</span>
+          </div>
+          <div class="shot"><img src="assets/img/step-narration.jpg" alt="Approved narration text with an approved voice recording" width="1600" height="927" loading="lazy"></div>
+        </article>
+        <article class="step" id="s-finished" role="tabpanel" aria-labelledby="t-finished">
+          <div class="copy">
+            <span class="num">06 · Finished Video</span>
+            <h3>Finalize, render, finish.</h3>
+            <p>Finalize shows exactly which Takes, narration and pacing your video will use — and what it costs — before anything renders. Then Hamaya renders the finished vertical video.</p>
+            <span class="tag">Finalize → Render → Finished Video</span>
+          </div>
+          <div class="shot"><img src="assets/img/step-finished.jpg" alt="Finished 9:16 video with its details: made from six selected Takes, narration included" width="1600" height="927" loading="lazy"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Why Hamaya</p>
+        <h2 id="why-title">AI does the making. You keep the authority.</h2>
+        <p>Hamaya is built around the decisions that make work yours — and makes each one visible.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"/></svg>
+          <h3>You are the final authority</h3>
+          <p>AI proposes; you decide. Nothing is selected, approved or rendered on your behalf.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M15.8 12.2l1.6 1.6 3-3.3"/></svg>
+          <h3>Explicit Take selection</h3>
+          <p>Viewing is not choosing. A Take enters your film only when you press Use Take.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M8 10.5h5M10.5 8v5"/></svg>
+          <h3>Inspectable AI output</h3>
+          <p>AI inspection explains itself: every finding comes with the evidence behind it.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2c-.5-.9-1.5-1.4-2.8-1.4-1.6 0-2.7.8-2.7 2s1 1.7 2.7 2.1 2.9.9 2.9 2.2-1.2 2.1-2.9 2.1c-1.4 0-2.5-.6-3-1.6M12 6.3v1.5M12 16.3v1.4"/></svg>
+          <h3>Transparent spend</h3>
+          <p>Every AI action shows its credit price before you press it, and Finalize shows the render cost up front.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></svg>
+          <h3>Provenance</h3>
+          <p>A finished video records what it was made from: the selected Takes, the approved narration and the voice used.</p>
+        </article>
+        <article class="card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></svg>
+          <h3>A governed workflow</h3>
+          <p>Brief, story, shots, inspection, narration and finalize run in one ordered path — nothing important is skipped or done silently.</p>
+        </article>
+      </div>
+
+      <div class="feature">
+        <div>
+          <p class="eyebrow">Spend transparency</p>
+          <h2 style="font-size:clamp(28px,3.4vw,40px);margin-top:14px">Know what your video will use — and cost — before it renders.</h2>
+          <hr class="rule">
+          <p>Finalize is the last stop before rendering. It lists everything the video will be made from and states the cost plainly.</p>
+          <ul>
+            <li>Every selected Take, shot by shot</li>
+            <li>Whether approved narration is included</li>
+            <li>Pacing for each shot, under your control</li>
+            <li>The credit cost, shown before you press render</li>
+          </ul>
+        </div>
+        <div class="shot"><img src="assets/img/step-finalize.jpg" alt="Finalize screen listing the six Takes, narration and pacing, with the render cost shown before rendering" width="1600" height="926" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="made on-dark" aria-labelledby="made-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Made with Hamaya</p>
+        <h2 id="made-title">“The Next Horizon”</h2>
+        <p>A vertical film about Doha. Six shots, each Take chosen by the creator with Use Take, then narrated and rendered in Hamaya Studio OS.</p>
+      </div>
+      <ol class="reel">
+        <li><figure><img src="assets/img/made-01.jpg" alt="West Bay skyline before dawn over still water" width="640" height="1138" loading="lazy"><figcaption><b>Shot 1</b>Before the city wakes</figcaption></figure></li>
+        <li><figure><img src="assets/img/made-02.jpg" alt="A wooden dhow crossing the bay in golden first light" width="640" height="1138" loading="lazy"><figcaption><b>Shot 2</b>First light on the water</figcaption></figure></li>
+        <li><figure><img src="assets/img/made-03.jpg" alt="A souq street of warm stone with shutters opening" width="640" height="1138" loading="lazy"><figcaption><b>Shot 3</b>Heritage wakes</figcaption></figure></li>
+        <li><figure><img src="assets/img/made-04.jpg" alt="Arabic coffee poured from a dallah into a small cup" width="640" height="1138" loading="lazy"><figcaption><b>Shot 4</b>A human moment</figcaption></figure></li>
+        <li><figure><img src="assets/img/made-05.jpg" alt="A wind tower in an old alley with the modern skyline beyond" width="640" height="1138" loading="lazy"><figcaption><b>Shot 5</b>Old meets new</figcaption></figure></li>
+        <li><figure><img src="assets/img/made-06.jpg" alt="Aerial view of the Corniche curving toward the horizon" width="640" height="1138" loading="lazy"><figcaption><b>Shot 6</b>The next horizon</figcaption></figure></li>
+      </ol>
+      <p class="note">These are the selected IMAGE Takes exactly as generated in Hamaya. For Shot 5 the creator rejected the first Take, refined the direction and chose the second.</p>
+    </div>
+  </section>
+
+  <section class="next" aria-labelledby="next-title">
+    <div class="wrap">
+      <div class="box">
+        <p class="eyebrow" style="margin:4px 0 0">Where we're going</p>
+        <div>
+          <h3 id="next-title">Deeper creator control is in development.</h3>
+          <p>Today Hamaya finishes image-based stories with narration. We are building toward more precise control: refining a single detail of a Take, comparing versions side by side, and inspecting moving images. These are future direction, not part of the product today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing on-dark" aria-labelledby="closing-title">
+    <div class="wrap">
+      <p class="eyebrow">Create with intention</p>
+      <h2 id="closing-title">Your idea. Your choices.<br>Your finished film.</h2>
+      <hr class="rule">
+      <p>Bring an idea. Hamaya brings the workflow — and leaves every decision with you.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="https://staging.hamayastudio.com">Start creating
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="https://staging.hamayastudio.com/login">Log in</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Hamaya Studio OS home">
+      <svg viewBox="55 200 885 603" fill="url(#hamaya-gold)" aria-hidden="true" style="width:36px"><use href="#hamaya-mark"/></svg>
+      <span class="brand-name"><b style="font-size:16px">HAMAYA</b><span>Studio OS</span></span>
+    </a>
+    <nav aria-label="Footer">
+      <a href="#how">How it works</a>
+      <a href="#why">Why Hamaya</a>
+      <a href="https://staging.hamayastudio.com/login">Log in</a>
+    </nav>
+    <span><span class="tagline">Create with intention.</span> &nbsp;© 2026 Hamaya</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.flow [role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+  function select(i, focus) {
+    tabs.forEach(function (t, j) {
+      var on = i === j;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[j].hidden = !on;
+    });
+    if (focus) tabs[i].focus();
+  }
+  if (tabs.length) {
+    document.querySelector('.flow').hidden = false;
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(i, false); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') select((i + 1) % tabs.length, true);
+        if (e.key === 'ArrowLeft') select((i - 1 + tabs.length) % tabs.length, true);
+      });
+    });
+    select(0, false);
+  }
+})();
+</script>
+</body>
+</html>
